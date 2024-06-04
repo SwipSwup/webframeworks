@@ -1,0 +1,11 @@
+<h1>Game!</h1>
+<button (click)="sendHighscore()">Send Highscore</button>
+<button (click)="getHighscores()">View Highscores</button>
+<button (click)="logout()">Logout</button>
+
+<h1>Highscores</h1>
+<ul>
+  <li *ngFor="let highscore of highscores">
+    {{ highscore.username }}: {{ highscore.score }}
+  </li>
+</ul>

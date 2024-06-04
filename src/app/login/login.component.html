@@ -1,0 +1,36 @@
+<div class="login-form">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">E-Mail-Adresse:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+        <small *ngIf="loginForm.controls.email.errors?.required">E-Mail-Adresse ist erforderlich.</small>
+        <small *ngIf="loginForm.controls.email.errors?.email">E-Mail-Adresse ist ungültig.</small>
+      </div>
+    </div>
+    <div>
+      <label for="password">Passwort:</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+        <small *ngIf="loginForm.controls.password.errors?.required">Passwort ist erforderlich.</small>
+        <small *ngIf="loginForm.controls.password.errors?.minlength">Passwort muss mindestens 6 Zeichen lang sein.</small>
+      </div>
+    </div>
+    <div>
+      <label for="confirmPassword">Passwort bestätigen:</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="loginForm.errors?.mismatch && loginForm.controls.confirmPassword.touched">
+        <small>Passwörter stimmen nicht überein.</small>
+      </div>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="data-binding">
+    <h3>Data Binding Output:</h3>
+    <p>E-Mail: <span>{{ loginForm.value.email }}</span></p>
+    <p>Passwort: <span>{{ loginForm.value.password }}</span></p>
+    <p>Passwort bestätigen: <span>{{ loginForm.value.confirmPassword }}</span></p>
+  </div>
+</div>
